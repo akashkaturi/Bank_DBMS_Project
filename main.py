@@ -55,6 +55,9 @@ while True:
 
         if authenticationStatus == True:
             print("[+] Authentication Successful...")
+            print()
+            name = ea.userName()
+            print(f'Welcome {name}')
             while True:
                 print()
                 print("Enter 1 to withdraw")

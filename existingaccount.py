@@ -15,6 +15,14 @@ class ExistingAccount:
         self.accountNumber = accountNumber
         self.attempt = attempt
 
+    def userName(self):
+        sql = ('select fullname from Amount where accountno=%s')
+        d = (self.accountNumber,)
+        x = mydb.cursor()
+        x.execute(sql, d)
+        uname = x.fetchone()
+        return uname[0]
+
     def authentication(self, password):
         # while self.attempt > 0:
         #     if self.accountNumber not in userAccounts.keys():
@@ -56,7 +64,7 @@ class ExistingAccount:
             sql2 = ('update Account set Balance=%s where AccountNo=%s')
             d = (t, self.accountNumber)
             x.execute(sql1, d)
-            x.execute(sql2,d)
+            x.execute(sql2, d)
             mydb.commit()
             print("Withdrawl Successful.")
             print(f'Amount remaining in your account is {t}')
@@ -76,7 +84,7 @@ class ExistingAccount:
         sql2 = ('update Account set Balance =%s where AccountNo=%s')
         d = (t, self.accountNumber)
         x.execute(sql1, d)
-        x.execute(sql2,d)
+        x.execute(sql2, d)
         mydb.commit()
         print('Amount Deposited')
         print(f'The current balance is {t}')
